@@ -9,24 +9,24 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
+//@Entity
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@Builder
 public class RestaurantTag {
-    @Id
-    @GeneratedValue
-    @JsonIgnore
-    private long restaurantTagId;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "restaurant_id", nullable = false)
-    @JsonBackReference
-    private Restaurant restaurant;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "tag_id", nullable = false)
-    @JsonManagedReference
-    private Tag tag;
+//    @Id
+//    @GeneratedValue
+//    @JsonIgnore
+//    private long restaurantTagId;
+//
+//    @ManyToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "restaurant_id", nullable = false)
+//    @JsonBackReference
+//    private Restaurant restaurant;
+//
+//    @ManyToOne(fetch = FetchType.EAGER)
+//    @JoinColumn(name = "tag_id", nullable = false)
+//    @JsonManagedReference
+//    private Tag tag;
 }

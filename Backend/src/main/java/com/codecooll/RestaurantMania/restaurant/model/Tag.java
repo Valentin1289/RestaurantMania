@@ -1,7 +1,6 @@
 package com.codecooll.RestaurantMania.restaurant.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -23,9 +22,13 @@ public class Tag {
     private Long id;
     private String name;
 
-    @JsonBackReference
-    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<RestaurantTag> restaurantTags;
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+//    private List<RestaurantTag> restaurantTags;
 
+
+    @JsonBackReference
+    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "tags")
+    private List<Restaurant> restaurants;
 
 }

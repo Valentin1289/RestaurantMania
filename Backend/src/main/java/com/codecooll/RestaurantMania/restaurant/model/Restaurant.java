@@ -1,5 +1,6 @@
 package com.codecooll.RestaurantMania.restaurant.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -31,18 +32,18 @@ public class Restaurant {
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Image image;
 
-//    @JsonManagedReference
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @JoinTable(
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
 //            name = "restaurants_tags",
 //            joinColumns = @JoinColumn(name = "restaurant_id"),
 //            inverseJoinColumns = @JoinColumn(name = "tag_id")
-//    )
-//    private List<Tag> tags;
+    )
+    private List<Tag> tags ;
 
-    @JsonManagedReference
-    @OneToMany(mappedBy = "restaurant" ,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-    private List<RestaurantTag> restaurantTags;
+//    @JsonManagedReference
+//    @OneToMany(mappedBy = "restaurant" ,cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+//    private List<RestaurantTag> restaurantTags;
 
     @JsonIgnore
     @ManyToOne

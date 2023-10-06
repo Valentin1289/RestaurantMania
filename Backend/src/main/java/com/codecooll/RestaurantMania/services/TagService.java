@@ -1,7 +1,8 @@
 package com.codecooll.RestaurantMania.services;
 
 
-import com.codecooll.RestaurantMania.data.repository.RestaurantTagRepository;
+
+import com.codecooll.RestaurantMania.data.repository.RestaurantRepository;
 import com.codecooll.RestaurantMania.data.repository.TagRepository;
 import com.codecooll.RestaurantMania.restaurant.model.Restaurant;
 import com.codecooll.RestaurantMania.restaurant.model.RestaurantTag;
@@ -20,15 +21,30 @@ public class TagService {
 
     private final TagRepository tagRepository;
     private final RestaurantService restaurantService;
-    private final RestaurantTagRepository restaurantTagRepository;
+    private final RestaurantRepository restaurantRepository;
+
+
+//    public Tag addTagInRestaurant(Long restaurant_id, Long tag_id){
+//        Restaurant restaurant = Restaurant.builder().id(restaurant_id).restaurantTags(new ArrayList<>()).build();
+//        Tag tag = Tag.builder().id(tag_id).restaurantTags(new ArrayList<>()).build();
+//
+//        if(restaurant != null && tag != null){
+//            RestaurantTag restaurantTag = RestaurantTag.builder().restaurant(restaurant).tag(tag).build();
+//            restaurantTagRepository.save(restaurantTag);
+//        }
+//        return tag;
+//    }
 
     public Tag addTagInRestaurant(Long restaurant_id, Long tag_id){
-        Restaurant restaurant = Restaurant.builder().id(restaurant_id).restaurantTags(new ArrayList<>()).build();
-        Tag tag = Tag.builder().id(tag_id).restaurantTags(new ArrayList<>()).build();
+        Restaurant restaurant = Restaurant.builder().id(restaurant_id).tags(new ArrayList<>()).build();
+        Tag tag = Tag.builder().id(tag_id).restaurants(new ArrayList<>()).build();
 
         if(restaurant != null && tag != null){
-            RestaurantTag restaurantTag = RestaurantTag.builder().restaurant(restaurant).tag(tag).build();
-            restaurantTagRepository.save(restaurantTag);
+            tag.getRestaurants().add(restaurant);
+            restaurant.getTags().add(tag);
+            tagRepository.save(tag);
+
+
         }
         return tag;
     }
